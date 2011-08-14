@@ -33,6 +33,19 @@ endif
 "----------------------------------------------------------
 filetype plugin indent on
 autocmd FileType python set ts=4 sts=4 sw=4 noet noci si ai cinwords=if,elif,else,for,while,try,except,finally,def,class,with indentkeys+=#
+"color setting end
+
+"language setting start
+if has('mac')
+    set langmenu=japanese
+
+    if exists($LANG') && $LANG ==# 'ja_JP.UTF-8'
+        set langmenu=ja_ja.utf-8.macvim
+        set encoding=utf-8
+        set ambiwidth=double
+    endif
+endif
+"language setting end
 
 " tab
 "----------------------------------------------------------
@@ -42,7 +55,7 @@ set list listchars=tab:>-,eol:$,trail:*
 " edit
 "-----------------------------------------------------------
 filetype plugin on
-" vundle setting
+" vundle setting start
 set nocompatible
 filetype off
 set rtp+=~/dotfiles/.vim/bundle/vundle/
@@ -54,7 +67,11 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-rails'
+Bundle 'thinca/vim-ref'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
 filetype plugin indent on "required!
+" vundle setteing end
 
 set autoindent
 set cindent
@@ -186,4 +203,6 @@ au BufRead,BufNewFile *.as set ft=javascript syntax=javascript
 "taglist
 let Tlist_Ctags_Cmd = "/usr/bin/ctags " "ctagsのパス
 
-
+"vimproc setting start
+let g:vimproc_dll_path = $HOME.'/dotfiles/.vim/autoload/proc.so'
+"vimproc setting end
